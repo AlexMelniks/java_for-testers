@@ -1,7 +1,9 @@
 package tests;
 
 import model.AddData;
+import model.GroupData;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -10,7 +12,30 @@ import java.util.Comparator;
 import java.util.List;
 
 public class AddCreationTests extends TestBase {
+    @ParameterizedTest
+    @MethodSource("addProvider")
+    public void canCreateMultipleAdds(AddData add) {
+        var oldAdds = app.adds().getList();
+        app.adds().createAddNew(add);
+        var newAdds = app.adds().getList();
+        Comparator<AddData> compareById = Comparator.comparingInt(o -> Integer.parseInt(o.id()));
+        newAdds.sort(compareById);
+        var expectedList = new ArrayList<>(oldAdds);
+        expectedList.add(add.withId(newAdds.get(newAdds.size() - 1).id()).withFirstName("").withMiddleName("").withLastName(""));
+        expectedList.sort(compareById);
+        Assertions.assertEquals(newAdds, expectedList);
 
+    }
+
+    @ParameterizedTest
+    @MethodSource("negativeAddProvider")
+    public void canNotCreateAdd(AddData add) {
+        var oldAdds = app.adds().getList();
+        app.adds().createAddNew(add);
+        var newAdds = app.adds().getList();
+        Assertions.assertEquals(newAdds, oldAdds);
+
+    }
 
 
     public static List<AddData> addProvider() {
