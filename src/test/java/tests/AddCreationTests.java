@@ -1,9 +1,7 @@
 package tests;
 
 import model.AddData;
-import model.GroupData;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -21,7 +19,7 @@ public class AddCreationTests extends TestBase {
         Comparator<AddData> compareById = Comparator.comparingInt(o -> Integer.parseInt(o.id()));
         newAdds.sort(compareById);
         var expectedList = new ArrayList<>(oldAdds);
-        expectedList.add(add.withId(newAdds.get(newAdds.size() - 1).id()).withFirstName("").withMiddleName("").withLastName(""));
+        expectedList.add(add.withId(newAdds.get(newAdds.size() - 1).id()));
         expectedList.sort(compareById);
         Assertions.assertEquals(newAdds, expectedList);
 
@@ -41,19 +39,18 @@ public class AddCreationTests extends TestBase {
     public static List<AddData> addProvider() {
         var result = new ArrayList<AddData>();
         for (var firstName : List.of("", "Test")) {
-            for (var middleName : List.of("", "Test")) {
                 for (var lastName : List.of("", "Test")) {
-                    result.add(new AddData().withFirstName(firstName).withMiddleName(middleName).withLastName(lastName));
+                    result.add(new AddData().withFirstName(firstName).withLastName(lastName));
                 }
-            }
+
         }
         for (int i = 0; i < 5; i++) {
-            result.add(new AddData().withFirstName(randomString(i * 10)).withMiddleName(randomString(i * 10)).withLastName(randomString(i * 10)));
+            result.add(new AddData().withFirstName(randomString(i * 10)).withLastName(randomString(i * 10)));
         }
         return result;
     }
 
     public static List<AddData> negativeAddProvider() {
-        return new ArrayList<AddData>(List.of(new AddData("", "Test'", "", "")));
+        return new ArrayList<AddData>(List.of(new AddData("", "Test'", "")));
     }
 }

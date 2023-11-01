@@ -37,7 +37,6 @@ public class AddHelper extends HelperBase {
     }
     private void fillAddForm(AddData add) {
         type(By.name("firstname"), add.firstName());
-        type(By.name("middlename"), add.middleName());
         type(By.name("lastname"), add.lastName());
     }
 
@@ -78,7 +77,11 @@ public class AddHelper extends HelperBase {
         for (var tr : trs) {
             var checkbox = tr.findElement(By.name("selected[]"));
             var id = checkbox.getAttribute("id");
-            adds.add(new AddData().withId(id));
+            var last = tr.findElement(By.cssSelector("tr>td:nth-of-type(2)"));
+            var lastName = last.getText();
+            var first = tr.findElement(By.cssSelector("tr>td:nth-of-type(3)"));
+            var firstName = first.getText();
+            adds.add(new AddData().withId(id).withLastName(String.valueOf(lastName)).withFirstName(String.valueOf(firstName)));
         }
         return adds;
     }
