@@ -81,7 +81,7 @@ public class AddHelper extends HelperBase {
             var lastName = last.getText();
             var first = tr.findElement(By.cssSelector("tr>td:nth-of-type(3)"));
             var firstName = first.getText();
-            adds.add(new AddData().withId(id).withLastName(String.valueOf(lastName)).withFirstName(String.valueOf(firstName)));
+            adds.add(new AddData().withId(id).withLastName(lastName).withFirstName(firstName));
         }
         return adds;
     }
