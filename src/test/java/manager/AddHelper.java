@@ -1,8 +1,6 @@
 package manager;
 
 import model.AddData;
-import model.GroupData;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 
 import java.util.ArrayList;
@@ -30,6 +28,21 @@ public class AddHelper extends HelperBase {
         selectAllAdd();
         removeSelectedAdd();
     }
+    public void modifyAdd(AddData add, AddData modifiedAdd) {
+        openHomePage();
+        initAddModification(add);
+        fillAddForm(modifiedAdd);
+        submitGroupModification();
+    }
+
+    private void submitGroupModification() {
+        click(By.name("update"));
+    }
+
+    private void initAddModification(AddData add) {
+        click(By.cssSelector(String.format("input[value='%s'] td.center:nth-of-type(8) img", add.id())));
+    }
+
     public void openAddNewPage() {
         if (manager.isElementPresent(By.name("new"))) {
             click(By.linkText("add new"));
@@ -85,6 +98,7 @@ public class AddHelper extends HelperBase {
         }
         return adds;
     }
+
 }
 
 
