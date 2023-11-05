@@ -51,6 +51,7 @@ public class AddHelper extends HelperBase {
     private void fillAddForm(AddData add) {
         type(By.name("firstname"), add.firstName());
         type(By.name("lastname"), add.lastName());
+        attach(By.name("photo"), add.photo());
     }
 
     private void submitAddCreation() {
@@ -86,13 +87,13 @@ public class AddHelper extends HelperBase {
     public List<AddData> getList() {
         openHomePage();
         var adds = new ArrayList<AddData>();
-        var trs = manager.driver.findElements(By.name("entry"));
-        for (var tr : trs) {
-            var checkbox = tr.findElement(By.name("selected[]"));
+        var rows = manager.driver.findElements(By.name("entry"));
+        for (var row : rows) {
+            var checkbox = row.findElement(By.name("selected[]"));
             var id = checkbox.getAttribute("id");
-            var last = tr.findElement(By.cssSelector("tr>td:nth-of-type(2)"));
+            var last = row.findElement(By.cssSelector("row>td:nth-of-type(2)"));
             var lastName = last.getText();
-            var first = tr.findElement(By.cssSelector("tr>td:nth-of-type(3)"));
+            var first = row.findElement(By.cssSelector("row>td:nth-of-type(3)"));
             var firstName = first.getText();
             adds.add(new AddData().withId(id).withLastName(lastName).withFirstName(firstName));
         }

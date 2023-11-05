@@ -1,15 +1,16 @@
-package tests;
+package tests.Contact;
 
 import model.AddData;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import tests.TestBase;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
 
-public class AddModificationTests extends TestBase{
+public class AddModificationTests extends TestBase {
     @Test
     void canModifyAdd(){
         if (app.adds().getCountAdd() == 0) {

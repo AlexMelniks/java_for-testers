@@ -1,8 +1,9 @@
-package tests;
+package tests.Group;
 
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import tests.TestBase;
 
 import java.util.ArrayList;
 import java.util.Random;
