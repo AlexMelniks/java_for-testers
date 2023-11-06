@@ -61,7 +61,7 @@ public class AddCreationTests extends TestBase {
     }
 
     public static List<AddData> negativeAddProvider() {
-        return new ArrayList<AddData>(List.of(new AddData("", "Test'", "", "")));
+        return new ArrayList<>(List.of(new AddData("", "Test'", "", (randomFile("src/test/resources/images")))));
     }
 
 }

@@ -15,6 +15,7 @@ public class AddHelper extends HelperBase {
         openAddNewPage();
         fillAddForm(add);
         submitAddCreation();
+        returnToHomePage();
     }
 
     public void removeAdd(AddData add) {
@@ -33,6 +34,9 @@ public class AddHelper extends HelperBase {
         initAddModification(add);
         fillAddForm(modifiedAdd);
         submitGroupModification();
+    }
+    private void returnToHomePage() {
+        click(By.linkText("home page"));
     }
 
     private void submitGroupModification() {
@@ -91,9 +95,9 @@ public class AddHelper extends HelperBase {
         for (var row : rows) {
             var checkbox = row.findElement(By.name("selected[]"));
             var id = checkbox.getAttribute("id");
-            var last = row.findElement(By.cssSelector("row>td:nth-of-type(2)"));
+            var last = row.findElement(By.cssSelector("tr>td:nth-of-type(2)"));
             var lastName = last.getText();
-            var first = row.findElement(By.cssSelector("row>td:nth-of-type(3)"));
+            var first = row.findElement(By.cssSelector("tr>td:nth-of-type(3)"));
             var firstName = first.getText();
             adds.add(new AddData().withId(id).withLastName(lastName).withFirstName(firstName));
         }
