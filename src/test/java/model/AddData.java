@@ -17,4 +17,5 @@ public record AddData(String id, String firstName, String lastName, String photo
     public AddData withPhoto(String photo) {
         return new AddData(this.id, this.firstName, this.lastName, photo);
     }
+
 }

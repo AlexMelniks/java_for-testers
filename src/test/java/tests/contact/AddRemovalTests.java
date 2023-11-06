@@ -1,9 +1,9 @@
-package tests.Contact;
+package tests.contact;
 
 import model.AddData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import tests.TestBase;
+import tests.base.TestBase;
 
 import java.util.ArrayList;
 import java.util.Random;

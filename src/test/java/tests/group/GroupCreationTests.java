@@ -1,13 +1,12 @@
-package tests.Group;
+package tests.group;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import common.CommonFunctions;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import tests.TestBase;
+import tests.base.TestBase;
 
 import java.io.File;
 import java.io.IOException;

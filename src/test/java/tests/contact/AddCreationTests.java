@@ -1,12 +1,17 @@
-package tests.Contact;
+package tests.contact;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import common.CommonFunctions;
 import model.AddData;
+import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import tests.TestBase;
+import tests.base.TestBase;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -38,17 +43,20 @@ public class AddCreationTests extends TestBase {
     }
 
 
-    public static List<AddData> addProvider() {
+    public static List<AddData> addProvider() throws IOException {
         var result = new ArrayList<AddData>();
         for (var firstName : List.of("", "Test")) {
                 for (var lastName : List.of("", "Test")) {
-                    result.add(new AddData().withFirstName(firstName).withLastName(lastName).withPhoto(randomFile("src/test/resources/images")));
+                    result.add(new AddData()
+                            .withFirstName(firstName)
+                            .withLastName(lastName)
+                            .withPhoto(randomFile("src/test/resources/images")));
                 }
 
         }
-        for (int i = 0; i < 5; i++) {
-            result.add(new AddData().withFirstName(CommonFunctions.randomString(i * 10)).withLastName(CommonFunctions.randomString(i * 10)).withPhoto(randomFile("src/test/resources/images")));
-        }
+        ObjectMapper mapper = new ObjectMapper();
+        var value = mapper.readValue(new File("contacts.json"), new TypeReference<List<AddData>>(){});
+        result.addAll(value);
         return result;
     }
 

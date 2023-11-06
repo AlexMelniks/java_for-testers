@@ -1,4 +1,4 @@
-package tests;
+package tests.base;
 
 import manager.ApplicationManager;
 import org.junit.jupiter.api.BeforeEach;
