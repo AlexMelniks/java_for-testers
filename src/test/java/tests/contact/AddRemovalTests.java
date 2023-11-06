@@ -28,7 +28,7 @@ public class AddRemovalTests extends TestBase {
     @Test
     public void canRemoveAllAddAtOnce() {
         if (app.adds().getCountAdd() == 0) {
-            app.adds().createAddNew(new AddData().withFirstName("Тест"));
+            app.adds().createAddNew(new AddData().withFirstName("Test"));
         }
         app.adds().removeAllAdd();
         Assertions.assertEquals(0, app.adds().getCountAdd());

@@ -7,14 +7,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.Properties;
+
 public class ApplicationManager {
     protected WebDriver driver;
     private LoginHelper session;
 
     private GroupHelper groups;
-    private AddHelper adds;
+    private ContactHelper adds;
+    private Properties properties;
 
-    public void init(String browser) {
+    public void init(String browser, Properties properties ) {
+        this.properties = properties;
         if (driver == null) {
             if ("chrome".equals(browser)) {
                 driver = new ChromeDriver();
@@ -25,14 +29,14 @@ public class ApplicationManager {
             }
         }
         Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
-        driver.get("http://localhost/addressbook/");
+        driver.get(properties.getProperty("web.baseUrl"));
         driver.manage().window().setSize(new Dimension(960, 759));
-        session().Login();
+        session().Login(properties);
     }
 
-    public AddHelper adds() {
+    public ContactHelper adds() {
         if (adds == null) {
-            adds = new AddHelper(this);
+            adds = new ContactHelper(this);
         }
         return adds;
     }

@@ -1,17 +1,20 @@
 package manager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+
+import java.util.Properties;
 
 public class LoginHelper extends HelperBase {
+
+
 
     public LoginHelper(ApplicationManager manager) {
         super(manager);
     }
 
-    void Login() {
-        type(By.name("user"), "admin");
-        type(By.name("pass"), "secret");
+    void Login(Properties properties) {
+        type(By.name("user"), properties.getProperty("web.username"));
+        type(By.name("pass"), properties.getProperty("web.password"));
         click(By.cssSelector("input:nth-child(7)"));
     }
 

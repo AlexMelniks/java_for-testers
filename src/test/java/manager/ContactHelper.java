@@ -6,8 +6,8 @@ import org.openqa.selenium.By;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddHelper extends HelperBase {
-    public AddHelper(ApplicationManager manager) {
+public class ContactHelper extends HelperBase {
+    public ContactHelper(ApplicationManager manager) {
         super(manager);
     }
 
