@@ -1,6 +1,7 @@
 package tests.base;
 
 import manager.ApplicationManager;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 
@@ -34,4 +35,5 @@ public class TestBase {
         var index = rnd.nextInt(fileNames.length);
         return Paths.get(dir, fileNames[index]).toString();
     }
+
 }
