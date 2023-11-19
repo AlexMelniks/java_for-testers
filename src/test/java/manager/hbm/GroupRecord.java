@@ -22,7 +22,7 @@ public class GroupRecord {
     public String header;
     @Column(name = "group_footer")
     public String footer;
-    public Date deprecated = new Date(2000, Calendar.FEBRUARY, 25);
+
     public GroupRecord() {
 
     }

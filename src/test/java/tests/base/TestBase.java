@@ -2,6 +2,7 @@ package tests.base;
 
 import manager.ApplicationManager;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.By;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,7 +13,8 @@ import java.util.Properties;
 import java.util.Random;
 
 public class TestBase {
-    protected static ApplicationManager app;
+    public static ApplicationManager app;
+
 
 
     @BeforeEach

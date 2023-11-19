@@ -3,7 +3,7 @@ package model;
 public record AddData(String id, String firstName, String lastName, String photo) {
 
     public AddData() {
-        this("", "", "","");
+        this("", "","","");
     }
     public AddData withId(String id) {
         return new AddData(id, this.firstName, this.lastName, this.photo);

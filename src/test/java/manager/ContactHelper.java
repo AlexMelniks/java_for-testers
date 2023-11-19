@@ -31,20 +31,21 @@ public class ContactHelper extends HelperBase {
     }
     public void modifyAdd(AddData add, AddData modifiedAdd) {
         openHomePage();
+        selectAdd(add);
         initAddModification(add);
-        fillAddForm(modifiedAdd);
-        submitGroupModification();
+        modifyAddForm(modifiedAdd);
+        submitAddModification();
     }
     private void returnToHomePage() {
         click(By.linkText("home page"));
     }
 
-    private void submitGroupModification() {
+    private void submitAddModification() {
         click(By.name("update"));
     }
 
     private void initAddModification(AddData add) {
-        click(By.cssSelector(String.format("input[value='%s'] td.center:nth-of-type(8) img", add.id())));
+        click(By.cssSelector(String.format("a[href='edit.php?id=%s']", add.id())));
     }
 
     public void openAddNewPage() {
@@ -57,6 +58,10 @@ public class ContactHelper extends HelperBase {
         type(By.name("lastname"), add.lastName());
         attach(By.name("photo"), add.photo());
     }
+    private void modifyAddForm(AddData add) {
+        type(By.name("firstname"), add.firstName());
+        type(By.name("lastname"), add.lastName());
+    }
 
     private void submitAddCreation() {
         click(By.name("submit"));
@@ -64,9 +69,7 @@ public class ContactHelper extends HelperBase {
 
 
     public void openHomePage() {
-        if (manager.isElementPresent(By.name("new"))) {
             click(By.linkText("home"));
-        }
     }
     private void selectAdd(AddData add) {
         click(By.cssSelector(String.format("input[value='%s']", add.id())));
@@ -88,13 +91,14 @@ public class ContactHelper extends HelperBase {
             checkbox.click();
         }
     }
+
     public List<AddData> getList() {
         openHomePage();
         var adds = new ArrayList<AddData>();
-        var rows = manager.driver.findElements(By.name("entry"));
+        var rows = manager.driver.findElements(By.xpath("//tr"));
+        rows.remove(0);
         for (var row : rows) {
-            var checkbox = row.findElement(By.name("selected[]"));
-            var id = checkbox.getAttribute("id");
+            var id = row.findElement(By.name("selected[]")).getAttribute("value");
             var last = row.findElement(By.cssSelector("tr>td:nth-of-type(2)"));
             var lastName = last.getText();
             var first = row.findElement(By.cssSelector("tr>td:nth-of-type(3)"));

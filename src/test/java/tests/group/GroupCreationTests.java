@@ -20,9 +20,9 @@ public class GroupCreationTests extends TestBase {
     @ParameterizedTest
     @MethodSource("singleRandomGroup")
     public void canCreateGroup(GroupData group) {
-        var oldGroups = app.jdbc().getGroupList();
+        var oldGroups = app.hbm().getGroupList();
         app.groups().createGroup(group);
-        var newGroups = app.jdbc().getGroupList();
+        var newGroups = app.hbm().getGroupList();
         Comparator<GroupData> compareById = Comparator.comparingInt(o -> Integer.parseInt(o.id()));
         newGroups.sort(compareById);
         var maxId = newGroups.get(newGroups.size() - 1).id();
