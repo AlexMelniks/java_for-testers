@@ -14,7 +14,7 @@ public class ApplicationManager {
     private LoginHelper session;
 
     private GroupHelper groups;
-    private ContactHelper adds;
+    private ContactHelper contacts;
     private Properties properties;
 
     private JdbcHelper jdbc;
@@ -37,11 +37,11 @@ public class ApplicationManager {
         session().Login(properties);
     }
 
-    public ContactHelper adds() {
-        if (adds == null) {
-            adds = new ContactHelper(this);
+    public ContactHelper contacts() {
+        if (contacts == null) {
+            contacts = new ContactHelper(this);
         }
-        return adds;
+        return contacts;
     }
     public JdbcHelper jdbc() {
         if (jdbc == null) {

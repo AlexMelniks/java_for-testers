@@ -34,9 +34,9 @@ public class GroupCreationTests extends TestBase {
     @ParameterizedTest
     @MethodSource("negativeGroupProvider")
     public void canNotGroup(GroupData group) {
-        var oldGroups = app.groups().getList();
+        var oldGroups = app.groups().getListGroups();
         app.groups().createGroup(group);
-        var newGroups = app.groups().getList();
+        var newGroups = app.groups().getListGroups();
         Assertions.assertEquals(newGroups, oldGroups);
     }
 

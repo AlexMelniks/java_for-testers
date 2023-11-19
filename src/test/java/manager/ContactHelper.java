@@ -1,6 +1,6 @@
 package manager;
 
-import model.AddData;
+import model.ContactData;
 import org.openqa.selenium.By;
 
 import java.util.ArrayList;
@@ -11,59 +11,59 @@ public class ContactHelper extends HelperBase {
         super(manager);
     }
 
-    public void createAddNew(AddData add) {
-        openAddNewPage();
-        fillAddForm(add);
-        submitAddCreation();
+    public void createContactNew(ContactData contact) {
+        openContactNewPage();
+        fillContactForm(contact);
+        submitContactCreation();
         returnToHomePage();
     }
 
-    public void removeAdd(AddData add) {
+    public void removeAdd(ContactData contact) {
         openHomePage();
-        selectAdd(add);
-        removeSelectedAdd();
+        selectContact(contact);
+        removeSelectedContact();
     }
 
-    public void removeAllAdd() {
+    public void removeAllContacts() {
         openHomePage();
-        selectAllAdd();
-        removeSelectedAdd();
+        selectAllContact();
+        removeSelectedContact();
     }
-    public void modifyAdd(AddData add, AddData modifiedAdd) {
+    public void modifyContact(ContactData contact, ContactData modifiedAdd) {
         openHomePage();
-        selectAdd(add);
-        initAddModification(add);
-        modifyAddForm(modifiedAdd);
-        submitAddModification();
+        selectContact(contact);
+        initContactModification(contact);
+        modifyContactForm(modifiedAdd);
+        submitContactModification();
     }
     private void returnToHomePage() {
         click(By.linkText("home page"));
     }
 
-    private void submitAddModification() {
+    private void submitContactModification() {
         click(By.name("update"));
     }
 
-    private void initAddModification(AddData add) {
-        click(By.cssSelector(String.format("a[href='edit.php?id=%s']", add.id())));
+    private void initContactModification(ContactData contact) {
+        click(By.cssSelector(String.format("a[href='edit.php?id=%s']", contact.id())));
     }
 
-    public void openAddNewPage() {
+    public void openContactNewPage() {
         if (manager.isElementPresent(By.name("new"))) {
             click(By.linkText("add new"));
         }
     }
-    private void fillAddForm(AddData add) {
-        type(By.name("firstname"), add.firstName());
-        type(By.name("lastname"), add.lastName());
-        attach(By.name("photo"), add.photo());
+    private void fillContactForm(ContactData contact) {
+        type(By.name("firstname"), contact.firstName());
+        type(By.name("lastname"), contact.lastName());
+        attach(By.name("photo"), contact.photo());
     }
-    private void modifyAddForm(AddData add) {
-        type(By.name("firstname"), add.firstName());
-        type(By.name("lastname"), add.lastName());
+    private void modifyContactForm(ContactData contact) {
+        type(By.name("firstname"), contact.firstName());
+        type(By.name("lastname"), contact.lastName());
     }
 
-    private void submitAddCreation() {
+    private void submitContactCreation() {
         click(By.name("submit"));
     }
 
@@ -71,30 +71,30 @@ public class ContactHelper extends HelperBase {
     public void openHomePage() {
             click(By.linkText("home"));
     }
-    private void selectAdd(AddData add) {
+    private void selectContact(ContactData add) {
         click(By.cssSelector(String.format("input[value='%s']", add.id())));
     }
 
-    private void removeSelectedAdd() {
+    private void removeSelectedContact() {
         click(By.cssSelector(".left:nth-child(8) > input"));
         manager.driver.switchTo().alert().accept();
     }
 
-    public int getCountAdd() {
+    public int getCountContact() {
         openHomePage();
         return manager.driver.findElements(By.name("selected[]")).size();
     }
 
-    private void selectAllAdd() {
+    private void selectAllContact() {
         var checkboxes = manager.driver.findElements(By.name("selected[]"));
         for (var checkbox : checkboxes) {
             checkbox.click();
         }
     }
 
-    public List<AddData> getList() {
+    public List<ContactData> getListContact() {
         openHomePage();
-        var adds = new ArrayList<AddData>();
+        var contacts = new ArrayList<ContactData>();
         var rows = manager.driver.findElements(By.xpath("//tr"));
         rows.remove(0);
         for (var row : rows) {
@@ -103,9 +103,9 @@ public class ContactHelper extends HelperBase {
             var lastName = last.getText();
             var first = row.findElement(By.cssSelector("tr>td:nth-of-type(3)"));
             var firstName = first.getText();
-            adds.add(new AddData().withId(id).withLastName(lastName).withFirstName(firstName));
+            contacts.add(new ContactData().withId(id).withLastName(lastName).withFirstName(firstName));
         }
-        return adds;
+        return contacts;
     }
 
 }
