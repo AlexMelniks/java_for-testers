@@ -29,7 +29,7 @@ public class ContactRecord {
     public String title = "";
     public String address = "";
     public String home = "";
-    public Date deprecated = new Date();
+    public Date deprecated = null;
     public String mobile = "";
     public String work = "";
     public String fax = "";

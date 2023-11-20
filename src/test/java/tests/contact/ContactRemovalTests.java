@@ -11,19 +11,19 @@ import java.util.Random;
 public class ContactRemovalTests extends TestBase {
 
     @Test
-    public void canRemoveAdd() {
+    public void canRemoveAdd() throws InterruptedException {
         if (app.hbm().getContactCount() == 0) {
-            app.hbm().createContact(new ContactData("", "Test", "Test", ""));
+            app.hbm().createContact(new ContactData());
         }
         var oldContacts = app.hbm().getContactList();
         var rnd = new Random();
         var index = rnd.nextInt(oldContacts.size());
-        app.contacts().refreshPage();
         app.contacts().removeContact(oldContacts.get(index));
+        Thread.sleep(1000);
         var newContacts = app.hbm().getContactList();
         var expectedList = new ArrayList<>(oldContacts);
         expectedList.remove(index);
-        Assertions.assertEquals(newContacts, expectedList);
+        Assertions.assertEquals(expectedList, newContacts);
     }
 
     @Test

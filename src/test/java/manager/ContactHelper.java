@@ -33,7 +33,7 @@ public class ContactHelper extends HelperBase {
         openHomePage();
         selectContact(contact);
         initContactModification(contact);
-        modifyContactForm(modifiedAdd);
+        fillContactForm(modifiedAdd);
         submitContactModification();
     }
     private void returnToHomePage() {
@@ -54,11 +54,6 @@ public class ContactHelper extends HelperBase {
         }
     }
     private void fillContactForm(ContactData contact) {
-        type(By.name("firstname"), contact.firstName());
-        type(By.name("lastname"), contact.lastName());
-        attach(By.name("photo"), contact.photo());
-    }
-    private void modifyContactForm(ContactData contact) {
         type(By.name("firstname"), contact.firstName());
         type(By.name("lastname"), contact.lastName());
     }
