@@ -1,7 +1,9 @@
 package manager;
 
 import model.ContactData;
+import model.GroupData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +14,16 @@ public class ContactHelper extends HelperBase {
     }
 
     public void createContactNew(ContactData contact) {
-        openContactNewPage();
+        openAddNewPage();
         fillContactForm(contact);
+        submitContactCreation();
+        returnToHomePage();
+    }
+
+    public void createContact(ContactData contact, GroupData group) {
+        openAddNewPage();
+        fillContactForm(contact);
+        selectGroup(group);
         submitContactCreation();
         returnToHomePage();
     }
@@ -36,6 +46,32 @@ public class ContactHelper extends HelperBase {
         fillContactForm(modifiedAdd);
         submitContactModification();
     }
+    public void removeContactFromGroup(ContactData contact, GroupData group) {
+        openHomePage();
+        selectGroupToDisplayСontacts(group);
+        selectContact(contact);
+        removeFromGroup();
+    }
+    public void addContactToGroup(ContactData contact, GroupData group) {
+        openHomePage();
+        selectContact(contact);
+        selectAddToGroup(group);
+    }   private void selectAddToGroup(GroupData group) {
+        new Select(manager.driver.findElement(By.name("to_group"))).selectByValue(group.id());
+        click(By.name("add"));
+    }
+
+    private void removeFromGroup() {
+        click((By.name("remove")));
+    }
+
+    private void selectGroupToDisplayСontacts(GroupData group) {
+        new Select(manager.driver.findElement(By.name("group"))).selectByValue(group.id());
+    }
+    private void selectGroup(GroupData group) {
+        new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());
+    }
+
     private void returnToHomePage() {
         click(By.linkText("home page"));
     }
@@ -48,7 +84,7 @@ public class ContactHelper extends HelperBase {
         click(By.cssSelector(String.format("a[href='edit.php?id=%s']", contact.id())));
     }
 
-    public void openContactNewPage() {
+    public void openAddNewPage() {
         if (manager.isElementPresent(By.name("new"))) {
             click(By.linkText("add new"));
         }

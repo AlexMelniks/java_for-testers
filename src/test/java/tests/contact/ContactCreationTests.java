@@ -19,7 +19,7 @@ import java.util.List;
 public class ContactCreationTests extends TestBase {
     @ParameterizedTest
     @MethodSource("singleRandomContactProvider")
-    public void canCreateMultipleAdds(ContactData contact) {
+    public void canCreateMultipleContacts(ContactData contact) {
         var oldContacts = app.hbm().getContactList();
         app.contacts().createContactNew(contact);
         var newContacts = app.hbm().getContactList();
@@ -42,34 +42,34 @@ public class ContactCreationTests extends TestBase {
 
     }
 
-     /*@ParameterizedTest
-    @MethodSource("contactProvider")
+     @ParameterizedTest
+    @MethodSource("singleRandomContactProvider")
 
     public void contactCreationInGroupTests(ContactData contact) {
-        var oldContacts = app.contacts().getListContact();
+         if (app.hbm().getContactCount() == 0) {
+             app.contacts().createContactNew(contact);
+         }
         if (app.hbm().getGroupCount() == 0) {
             app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
         }
         var group = app.hbm().getGroupList().get(0);
         var oldRelated = app.hbm().getContactsInGroup(group);
-        //app.contacts().createContactNew(contact, group);
+        app.contacts().createContact(contact, group);
         var newRelated = app.hbm().getContactsInGroup(group);
         Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
-
-        var newContacts = app.contacts().getListContact();
 
         Comparator<ContactData> compareById = (o1, o2) -> {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         };
-        newContacts.sort(compareById);
+         newRelated.sort(compareById);
+         var maxId = newRelated.get(newRelated.size() - 1).id();
+         var expectedList = new ArrayList<>(oldRelated);
+         expectedList.add(contact.withId(maxId).withPhoto(""));
+         expectedList.sort(compareById);
+         Assertions.assertEquals(expectedList, newRelated);
+     }
 
-        var expectedList = new ArrayList<>(oldContacts);
-        expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id()));
-        expectedList.sort(compareById);
-        Assertions.assertEquals(newContacts, expectedList);
-    } */
-
-    public static List<ContactData> singleRandomContactProvider() throws IOException {
+    public static List<ContactData> singleRandomContactProvider() {
         return List.of(new ContactData()
                 .withFirstName(CommonFunctions.randomString(10))
                 .withLastName(CommonFunctions.randomString(10))

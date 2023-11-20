@@ -109,11 +109,16 @@ public class HibernateHelper extends HelperBase {
 
 
 
-    /*public List<ContactData> getContactsInGroup(GroupData group) {
+    public List<ContactData> getContactsInGroup(GroupData group) {
         return sessionFactory.fromSession(session -> {
             return convertContactlist(session.get(GroupRecord.class, group.id()).contacts);
         });
 
-    }*/
+    }
+
+    public boolean getCountContactInGroup(GroupData group, ContactData contact) {
+        var contactsInGroup = getContactsInGroup(group);
+        return contactsInGroup.contains(contact);
+    }
 }
 
