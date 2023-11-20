@@ -59,7 +59,6 @@ public class ContactRecord {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
-
         this.photo = photo;
     }
 }

@@ -12,8 +12,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static tests.base.TestBase.randomFile;
-
 public class Generator {
     @Parameter(names = {"--type", "-t"})
     String type;
@@ -53,7 +51,7 @@ public class Generator {
             result.add(new ContactData()
                     .withFirstName(CommonFunctions.randomString(i * 10))
                     .withLastName(CommonFunctions.randomString(i * 10))
-                    .withPhoto(randomFile("src/test/resources/images")));
+                    .withPhoto(CommonFunctions.randomFile("src/test/resources/images")));
         }
         return result;
     }

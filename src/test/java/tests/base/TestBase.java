@@ -29,11 +29,5 @@ public class TestBase {
 
     }
 
-    public static String randomFile(String dir){
-        var fileNames = new File(dir).list();
-        var rnd = new Random();
-        var index = rnd.nextInt(fileNames.length);
-        return Paths.get(dir, fileNames[index]).toString();
-    }
 
 }

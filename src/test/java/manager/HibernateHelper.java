@@ -94,8 +94,8 @@ public class HibernateHelper extends HelperBase {
 
     private static ContactData convert(ContactRecord record) {
         return new ContactData( "" + record.id,
-                record.lastName,
                 record.firstName,
+                record.lastName,
                 "");
     }
 
