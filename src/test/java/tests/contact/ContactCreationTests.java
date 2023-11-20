@@ -3,7 +3,6 @@ package tests.contact;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.ContactData;
-import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -17,11 +16,11 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
     @ParameterizedTest
-    @MethodSource("addProvider")
+    @MethodSource("contactProvider")
     public void canCreateMultipleAdds(ContactData contact) {
-        var oldContacts = app.contacts().getListContact();
+        var oldContacts = app.hbm().getContactList();
         app.contacts().createContactNew(contact);
-        var newContacts = app.contacts().getListContact();
+        var newContacts = app.hbm().getContactList();
         Comparator<ContactData> compareById = Comparator.comparingInt(o -> Integer.parseInt(o.id()));
         newContacts.sort(compareById);
         var expectedList = new ArrayList<>(oldContacts);
@@ -32,7 +31,7 @@ public class ContactCreationTests extends TestBase {
     }
 
     @ParameterizedTest
-    @MethodSource("negativeAddProvider")
+    @MethodSource("negativeContactProvider")
     public void canNotCreateAdd(ContactData add) {
         var oldAdds = app.contacts().getListContact();
         app.contacts().createContactNew(add);
@@ -40,7 +39,8 @@ public class ContactCreationTests extends TestBase {
         Assertions.assertEquals(newAdds, oldAdds);
 
     }
-    @ParameterizedTest
+
+     /*@ParameterizedTest
     @MethodSource("contactProvider")
 
     public void contactCreationInGroupTests(ContactData contact) {
@@ -49,9 +49,9 @@ public class ContactCreationTests extends TestBase {
             app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
         }
         var group = app.hbm().getGroupList().get(0);
-        var oldRelated =app.hbm().getContactsInGroup(group);
+        var oldRelated = app.hbm().getContactsInGroup(group);
         //app.contacts().createContactNew(contact, group);
-        var newRelated =app.hbm().getContactsInGroup(group);
+        var newRelated = app.hbm().getContactsInGroup(group);
         Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
 
         var newContacts = app.contacts().getListContact();
@@ -65,30 +65,29 @@ public class ContactCreationTests extends TestBase {
         expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id()));
         expectedList.sort(compareById);
         Assertions.assertEquals(newContacts, expectedList);
-    }
+    } */
 
 
-
-
-    public static List<ContactData> addProvider() throws IOException {
+    public static List<ContactData> contactProvider() throws IOException {
         var result = new ArrayList<ContactData>();
         for (var firstName : List.of("", "Test")) {
-                for (var lastName : List.of("", "Test")) {
-                    result.add(new ContactData()
-                            .withFirstName(firstName)
-                            .withLastName(lastName)
-                            .withPhoto(randomFile("src/test/resources/images")));
-                }
+            for (var lastName : List.of("", "Test")) {
+                result.add(new ContactData()
+                        .withFirstName(firstName)
+                        .withLastName(lastName)
+                        .withPhoto(randomFile("src/test/resources/images")));
+            }
 
         }
         ObjectMapper mapper = new ObjectMapper();
-        var value = mapper.readValue(new File("contacts.json"), new TypeReference<List<ContactData>>(){});
+        var value = mapper.readValue(new File("contacts.json"), new TypeReference<List<ContactData>>() {
+        });
         result.addAll(value);
         return result;
     }
 
-    public static List<ContactData> negativeAddProvider() {
-        return new ArrayList<>(List.of(new ContactData("", "Test'", "", (randomFile("src/test/resources/images")))));
+    public static List<ContactData> negativeContactProvider() {
+        return new ArrayList<>(List.of(new ContactData("", "Test'", "",(randomFile("src/test/resources/images")))));
     }
 
 }

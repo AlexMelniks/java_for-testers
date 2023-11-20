@@ -15,12 +15,12 @@ public class GroupModificationTests extends TestBase {
         if (app.groups().getCountGroup() == 0) {
             app.groups().createGroup(new GroupData());
         }
-        var oldGroups = app.groups().getListGroups();
+        var oldGroups = app.hbm().getGroupList();
         var rnd = new Random();
         var index = rnd.nextInt(oldGroups.size());
         var testData = new GroupData().withName("modify group");
         app.groups().modifyGroup(oldGroups.get(index), testData);
-        var newGroups = app.groups().getListGroups();
+        var newGroups = app.hbm().getGroupList();
         var expectedList = new ArrayList<>(oldGroups);
         expectedList.set(index, testData.withId(oldGroups.get(index).id()));
         Comparator<GroupData> compareById = (o1, o2) -> {

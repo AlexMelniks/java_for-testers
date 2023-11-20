@@ -18,7 +18,7 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
-    public void removeAdd(ContactData contact) {
+    public void removeContact(ContactData contact) {
         openHomePage();
         selectContact(contact);
         removeSelectedContact();
@@ -74,7 +74,9 @@ public class ContactHelper extends HelperBase {
     private void selectContact(ContactData add) {
         click(By.cssSelector(String.format("input[value='%s']", add.id())));
     }
-
+    public void refreshPage() {
+        manager.driver.navigate().refresh();
+    }
     private void removeSelectedContact() {
         click(By.cssSelector(".left:nth-child(8) > input"));
         manager.driver.switchTo().alert().accept();
