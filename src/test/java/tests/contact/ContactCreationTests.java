@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 
 public class ContactCreationTests extends TestBase {
     @ParameterizedTest
@@ -52,9 +53,11 @@ public class ContactCreationTests extends TestBase {
         if (app.hbm().getGroupCount() == 0) {
             app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
         }
+        var oldContacts = app.hbm().getContactList();
+        var rnd = new Random();var index = rnd.nextInt(oldContacts.size());
         var group = app.hbm().getGroupList().get(0);
         var oldRelated = app.hbm().getContactsInGroup(group);
-        app.contacts().createContact(contact, group);
+        app.contacts().addContactInGroup(oldContacts.get(index), group);
         var newRelated = app.hbm().getContactsInGroup(group);
         Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
 

@@ -3,6 +3,7 @@ package manager;
 import model.ContactData;
 import model.GroupData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -20,12 +21,11 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
-    public void createContact(ContactData contact, GroupData group) {
-        openAddNewPage();
-        fillContactForm(contact);
-        selectGroup(group);
-        submitContactCreation();
-        returnToHomePage();
+    public void addContactInGroup(ContactData contact, GroupData group) {
+        openHomePage();
+        selectContact(contact);
+        addInGroup(group);
+        openHomePage();
     }
 
     public void removeContact(ContactData contact) {
@@ -68,8 +68,9 @@ public class ContactHelper extends HelperBase {
     private void selectGroupToDisplayСontacts(GroupData group) {
         new Select(manager.driver.findElement(By.name("group"))).selectByValue(group.id());
     }
-    private void selectGroup(GroupData group) {
-        new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());
+    private void addInGroup(GroupData group) {
+        new Select(manager.driver.findElement(By.name("to_group"))).selectByValue(group.id());
+        click(By.name("add"));
     }
 
     private void returnToHomePage() {
@@ -82,6 +83,7 @@ public class ContactHelper extends HelperBase {
 
     private void initContactModification(ContactData contact) {
         click(By.cssSelector(String.format("a[href='edit.php?id=%s']", contact.id())));
+
     }
 
     public void openAddNewPage() {
@@ -102,8 +104,8 @@ public class ContactHelper extends HelperBase {
     public void openHomePage() {
             click(By.linkText("home"));
     }
-    private void selectContact(ContactData add) {
-        click(By.cssSelector(String.format("input[value='%s']", add.id())));
+    private void selectContact(ContactData contact) {
+        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
     }
     public void refreshPage() {
         manager.driver.navigate().refresh();
