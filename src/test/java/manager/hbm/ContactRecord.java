@@ -24,14 +24,19 @@ public class ContactRecord {
     public String lastName;
     @Column(name = "photo")
     public String photo;
+
+
+    public String home;
+    public String mobile;
+    public String work;
+    public String phone2;
+
     public String nickname = "";
     public String company = "";
     public String title = "";
     public String address = "";
-    public String home = "";
     public Date deprecated = null;
-    public String mobile = "";
-    public String work = "";
+
     public String fax = "";
     public String email = "";
     public String email2 = "";
@@ -47,7 +52,6 @@ public class ContactRecord {
     public String amonth = "";
     public String ayear = "";
     public String address2 = "";
-    public String phone2 = "";
     public String notes = "";
     public String middlename = "";
 

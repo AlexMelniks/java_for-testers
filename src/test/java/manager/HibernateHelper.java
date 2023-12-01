@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
 
-import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,10 +92,13 @@ public class HibernateHelper extends HelperBase {
     }
 
     private static ContactData convert(ContactRecord record) {
-        return new ContactData( "" + record.id,
-                record.firstName,
-                record.lastName,
-                "");
+        return new ContactData().withId("" + record.id)
+                .withFirstName(record.firstName)
+                .withLastName(record.lastName)
+                .withHome(record.home)
+                .withMobile(record.mobile)
+                .withWork(record.work)
+                .withPhone2(record.phone2);
     }
 
     private static ContactRecord convert(ContactData data) {

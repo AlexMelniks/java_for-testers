@@ -99,7 +99,7 @@ public class ContactCreationTests extends TestBase {
     }
 
     public static List<ContactData> negativeContactProvider() {
-        return new ArrayList<>(List.of(new ContactData("", "Test'", "",(CommonFunctions.randomFile("src/test/resources/images")))));
+        return new ArrayList<>(List.of(new ContactData("", "Test'", "",(CommonFunctions.randomFile("src/test/resources/images")), "", "", "", "")));
     }
 
 }
