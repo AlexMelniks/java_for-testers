@@ -30,17 +30,17 @@ public class ContactRecord {
     public String mobile;
     public String work;
     public String phone2;
-
+    public String email;
+    public String email2;
+    public String email3;
+    public String address;
+    public String address2;
     public String nickname = "";
     public String company = "";
     public String title = "";
-    public String address = "";
     public Date deprecated = null;
 
     public String fax = "";
-    public String email = "";
-    public String email2 = "";
-    public String email3 = "";
     public String im = "";
     public String im2 = "";
     public String im3 = "";
@@ -51,7 +51,6 @@ public class ContactRecord {
     public int aday = 0;
     public String amonth = "";
     public String ayear = "";
-    public String address2 = "";
     public String notes = "";
     public String middlename = "";
 
