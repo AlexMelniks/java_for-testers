@@ -74,7 +74,7 @@ public class HibernateHelper extends HelperBase {
         });
     }
     public List<ContactData>  getContactList() {
-        return convertContactlist(sessionFactory.fromSession(session -> {
+        return convertContactList(sessionFactory.fromSession(session -> {
             return session.createQuery("from ContactRecord", ContactRecord.class).list();
         }));
     }
@@ -83,7 +83,7 @@ public class HibernateHelper extends HelperBase {
             return session.createQuery("select count (*) from ContactRecord", Long.class).getSingleResult();
         });
     }
-    static List<ContactData> convertContactlist(List<ContactRecord> records) {
+    static List<ContactData> convertContactList(List<ContactRecord> records) {
         List<ContactData> result = new ArrayList<>();
         for (var record : records) {
             result.add(convert(record));
@@ -118,12 +118,22 @@ public class HibernateHelper extends HelperBase {
 
     public List<ContactData> getContactsInGroup(GroupData group) {
         return sessionFactory.fromSession(session -> {
-            return convertContactlist(session.get(GroupRecord.class, group.id()).contacts);
+            return convertContactList(session.get(GroupRecord.class, group.id()).contacts);
         });
 
     }
 
     public boolean getCountContactInGroup(GroupData group, ContactData contact) {
+        var contactsInGroup = getContactsInGroup(group);
+        return contactsInGroup.contains(contact);
+    }
+    public List<ContactData> getContactsInGroup(GroupData group) {
+        return sessionFactory.fromSession(session -> {
+            return convertContactList(session.get(GroupRecord.class, group.id()).contacts);
+        });
+    }
+
+    public boolean isExistContactInGroup(GroupData group, ContactData contact) {
         var contactsInGroup = getContactsInGroup(group);
         return contactsInGroup.contains(contact);
     }

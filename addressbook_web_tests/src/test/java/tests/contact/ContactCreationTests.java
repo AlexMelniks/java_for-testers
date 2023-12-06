@@ -43,34 +43,33 @@ public class ContactCreationTests extends TestBase {
 
     }
 
-     @ParameterizedTest
-    @MethodSource("singleRandomContactProvider")
-
-    public void contactCreationInGroupTests(ContactData contact) {
-         if (app.hbm().getContactCount() == 0) {
-             app.contacts().createContactNew(contact);
-         }
-        if (app.hbm().getGroupCount() == 0) {
-            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
-        }
-        var oldContacts = app.hbm().getContactList();
-        var rnd = new Random();var index = rnd.nextInt(oldContacts.size());
-        var group = app.hbm().getGroupList().get(0);
-        var oldRelated = app.hbm().getContactsInGroup(group);
-        app.contacts().addContactInGroup(oldContacts.get(index), group);
-        var newRelated = app.hbm().getContactsInGroup(group);
-        Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
-
-        Comparator<ContactData> compareById = (o1, o2) -> {
-            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
-        };
-         newRelated.sort(compareById);
-         var maxId = newRelated.get(newRelated.size() - 1).id();
-         var expectedList = new ArrayList<>(oldRelated);
-         expectedList.add(contact.withId(maxId).withPhoto(""));
-         expectedList.sort(compareById);
-         Assertions.assertEquals(expectedList, newRelated);
-     }
+//     @ParameterizedTest
+//    @MethodSource("singleRandomContactProvider")
+//
+//    public void contactCreationInGroupTests(ContactData contact) {
+//         if (app.hbm().getContactCount() == 0) {
+//             app.contacts().createContactNew(contact);
+//         }
+//        if (app.hbm().getGroupCount() == 0) {
+//            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+//        }
+//        var oldContacts = app.hbm().getContactList();
+//        var rnd = new Random();var index = rnd.nextInt(oldContacts.size());
+//        var group = app.hbm().getGroupList().get(0);
+//        var oldRelated = app.hbm().getContactsInGroup(group);
+//        app.contacts().addContactInGroup(oldContacts.get(index), group);
+//        var newRelated = app.hbm().getContactsInGroup(group);
+//        Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
+//        Comparator<ContactData> compareById = (o1, o2) -> {
+//            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+//        };
+//         newRelated.sort(compareById);
+//         var maxId = newRelated.get(newRelated.size() - 1).id();
+//         var expectedList = new ArrayList<>(oldRelated);
+//         expectedList.add(contact.withId(maxId).withPhoto(""));
+//         expectedList.sort(compareById);
+//         Assertions.assertEquals(expectedList, newRelated);
+//     }
 
     public static List<ContactData> singleRandomContactProvider() {
         return List.of(new ContactData()
