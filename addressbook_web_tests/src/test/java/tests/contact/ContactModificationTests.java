@@ -1,6 +1,7 @@
 package tests.contact;
 
 import model.ContactData;
+import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import tests.base.TestBase;
@@ -29,6 +30,33 @@ public class ContactModificationTests extends TestBase {
         newAdds.sort(compareById);
         expectedList.sort(compareById);
         Assertions.assertEquals(newAdds, expectedList);
+    }
+    @Test
+    void canAddContactToGroup() throws InterruptedException {
+        if (app.hbm().getContactCount() == 0) {
+            app.hbm().createContact(new ContactData());
+        }
+        if (app.hbm().getGroupCount() == 0) {
+            app.hbm().createGroup(new GroupData());
+        }
+        if (app.contacts().getCountContactInGroup() == 0) {
+            app.hbm().createContact(new ContactData());
+        }
+        var group = app.hbm().getGroupList().get(0);
+        var contact = app.contacts().getListContactInGroup().get(0);
+        var oldRelated = app.hbm().getContactsInGroup(group);
+        Thread.sleep(1000);
+        app.contacts().addContactToGroup(contact, group);
+        var newRelated = app.hbm().getContactsInGroup(group);
+        Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
+        Comparator<ContactData> compareById = (o1, o2) -> {
+            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+        };
+        newRelated.sort(compareById);
+        var expectedList = new ArrayList<>(oldRelated);
+        expectedList.add(contact);
+        expectedList.sort(compareById);
+        Assertions.assertEquals(expectedList, newRelated);
     }
 
 

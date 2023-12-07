@@ -65,9 +65,11 @@ public class ContactHelper extends HelperBase {
     }
     public void addContactToGroup(ContactData contact, GroupData group) {
         openHomePage();
+        noneGroup();
         selectContact(contact);
         selectAddToGroup(group);
-    }   private void selectAddToGroup(GroupData group) {
+    }
+    private void selectAddToGroup(GroupData group) {
         new Select(manager.driver.findElement(By.name("to_group"))).selectByValue(group.id());
         click(By.name("add"));
     }
@@ -131,6 +133,21 @@ public class ContactHelper extends HelperBase {
         return manager.driver.findElements(By.name("selected[]")).size();
     }
 
+    public int getCountContactInGroup() {
+        openHomePage();
+        noneGroup();
+        return manager.driver.findElements(By.name("selected[]")).size();
+    }
+
+    private void noneGroup() {
+        click(By.name("group"));
+        {
+            WebElement dropdown = manager.driver.findElement(By.name("group"));
+            dropdown.findElement(By.xpath("//option[. = '[none]']")).click();
+        }
+    }
+
+
     private void selectAllContact() {
         var checkboxes = manager.driver.findElements(By.name("selected[]"));
         for (var checkbox : checkboxes) {
@@ -140,6 +157,22 @@ public class ContactHelper extends HelperBase {
 
     public List<ContactData> getListContact() {
         openHomePage();
+        var contacts = new ArrayList<ContactData>();
+        var rows = manager.driver.findElements(By.xpath("//tr"));
+        rows.remove(0);
+        for (var row : rows) {
+            var id = row.findElement(By.name("selected[]")).getAttribute("value");
+            var last = row.findElement(By.cssSelector("tr>td:nth-of-type(2)"));
+            var lastName = last.getText();
+            var first = row.findElement(By.cssSelector("tr>td:nth-of-type(3)"));
+            var firstName = first.getText();
+            contacts.add(new ContactData().withId(id).withLastName(lastName).withFirstName(firstName));
+        }
+        return contacts;
+    }
+    public List<ContactData> getListContactInGroup() {
+        openHomePage();
+        noneGroup();
         var contacts = new ArrayList<ContactData>();
         var rows = manager.driver.findElements(By.xpath("//tr"));
         rows.remove(0);

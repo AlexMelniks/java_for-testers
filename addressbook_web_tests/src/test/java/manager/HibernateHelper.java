@@ -111,7 +111,19 @@ public class HibernateHelper extends HelperBase {
         if ("".equals(id)) {
             id = "0";
         }
-        return new ContactRecord(Integer.parseInt(id), data.firstName(), data.lastName(),  data.photo());
+        return new ContactRecord(Integer.parseInt(id),
+                data.firstName(),
+                data.lastName(),
+                data.photo(),
+                data.address(),
+                data.address2(),
+                data.email(),
+                data.email2(),
+                data.email3(),
+                data.home(),
+                data.mobile(),
+                data.work(),
+                data.phone2());
     }
 
 
@@ -127,5 +139,6 @@ public class HibernateHelper extends HelperBase {
         var contactsInGroup = getContactsInGroup(group);
         return contactsInGroup.contains(contact);
     }
+
 }
 

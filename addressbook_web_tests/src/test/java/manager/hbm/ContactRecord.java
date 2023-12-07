@@ -57,11 +57,19 @@ public class ContactRecord {
     public ContactRecord() {
     }
 
-
-    public ContactRecord(int id, String lastName, String firstName, String photo) {
+    public ContactRecord(int id, String lastName, String firstName, String photo, String address, String address2, String email, String email2, String email3, String home, String mobile, String work, String phone2 ) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
         this.photo = photo;
+        this.address = address;
+        this.address2 = address2;
+        this.email = email;
+        this.email2 = email2;
+        this.email3 = email3;
+        this.home = home;
+        this.mobile = mobile;
+        this.work = work;
+        this.phone2 = phone2;
     }
 }

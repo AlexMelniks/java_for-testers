@@ -7,7 +7,12 @@
     <list default="true" id="fe25c30d-c332-4eb2-be85-7868d51c0cab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/manager/ContactHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/manager/ContactHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/tests/contact/ContactCreationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/tests/contact/ContactCreationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/manager/HibernateHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/manager/HibernateHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/manager/JdbcHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/manager/JdbcHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/manager/hbm/ContactRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/manager/hbm/ContactRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/model/ContactData.java" beforeDir="false" afterPath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/model/ContactData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/tests/base/TestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/tests/base/TestBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/tests/contact/ContactModificationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/tests/contact/ContactModificationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +85,7 @@
       <recent name="D:\java\java_test\mantis_tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ContactCreationTests.contactCreationInGroupTests (1)">
+  <component name="RunManager" selected="Gradle.ContactModificationTests.canAddContactToGroup">
     <configuration name="ContactCreationTests.contactCreationInGroupTests (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -105,10 +110,10 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="ContactCreationTests.contactCreationInGroupTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ContactModificationTests.canAddContactToGroup" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/addressbook_web_tests" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
@@ -118,7 +123,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;tests.contact.ContactCreationTests.contactCreationInGroupTests&quot;" />
+            <option value="&quot;tests.contact.ContactModificationTests.canAddContactToGroup&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -203,18 +208,18 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.ContactCreationTests.contactCreationInGroupTests (1)" />
+      <item itemvalue="Gradle.ContactModificationTests.canAddContactToGroup" />
       <item itemvalue="Gradle.JamesTests.canCreateUser" />
       <item itemvalue="Gradle.MailTests.canReceiveEmail" />
       <item itemvalue="Gradle.LoginTests.canLogin" />
-      <item itemvalue="Gradle.ContactCreationTests.contactCreationInGroupTests" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ContactModificationTests.canAddContactToGroup" />
         <item itemvalue="Gradle.ContactCreationTests.contactCreationInGroupTests (1)" />
         <item itemvalue="Gradle.MailTests.canReceiveEmail" />
         <item itemvalue="Gradle.JamesTests.canCreateUser" />
         <item itemvalue="Gradle.LoginTests.canLogin" />
-        <item itemvalue="Gradle.ContactCreationTests.contactCreationInGroupTests" />
       </list>
     </recent_temporary>
   </component>
@@ -263,6 +268,11 @@
           <line>53</line>
           <option name="timeStamp" value="90" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/addressbook_web_tests/src/test/java/tests/contact/ContactModificationTests.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.UnsupportedOperationException" package="java.lang" />
           <option name="timeStamp" value="10" />
@@ -274,7 +284,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/tests/group/GroupCreationTests.java</url>
           <line>62</line>
-          <properties class="tests.group.GroupCreationTests" method="singleRandomGroup">
+          <properties class="tests.group.GroupCreationTests">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
@@ -283,11 +293,20 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/manager/ContactHelper.java</url>
           <line>73</line>
-          <properties class="manager.ContactHelper" method="addInGroup">
+          <properties class="manager.ContactHelper">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/addressbook_web_tests/src/test/java/tests/contact/ContactModificationTests.java</url>
+          <line>34</line>
+          <properties class="tests.contact.ContactModificationTests" method="canAddContactToGroup">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="108" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
