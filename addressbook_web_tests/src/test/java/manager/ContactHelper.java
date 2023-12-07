@@ -24,6 +24,14 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
+    public void createContactInGroup(ContactData contact, GroupData group) {
+        openAddNewPage();
+        fillContactForm(contact);
+        selectGroup(group);
+        submitContactCreation();
+        returnToHomePage();
+    }
+
     public void addContactInGroup(ContactData contact, GroupData group) {
         openHomePage();
         selectContact(contact);
@@ -186,6 +194,10 @@ public class ContactHelper extends HelperBase {
         }
         return result;
     }
+    private void selectGroup(GroupData group) {
+        new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());
+    }
+
 }
 
 

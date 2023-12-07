@@ -47,17 +47,12 @@ public class ContactCreationTests extends TestBase {
     @MethodSource("singleRandomContactProvider")
 
     public void contactCreationInGroupTests(ContactData contact) {
-         if (app.hbm().getContactCount() == 0) {
-             app.contacts().createContactNew(contact);
-         }
         if (app.hbm().getGroupCount() == 0) {
-            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+            app.hbm().createGroup(new GroupData());
         }
-        var oldContacts = app.hbm().getContactList();
-        var rnd = new Random();var index = rnd.nextInt(oldContacts.size());
         var group = app.hbm().getGroupList().get(0);
         var oldRelated = app.hbm().getContactsInGroup(group);
-        app.contacts().addContactInGroup(oldContacts.get(index), group);
+        app.contacts().createContactInGroup(contact, group);
         var newRelated = app.hbm().getContactsInGroup(group);
         Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
 
