@@ -32,20 +32,19 @@ public class ContactModificationTests extends TestBase {
         Assertions.assertEquals(newAdds, expectedList);
     }
     @Test
-    void canAddContactToGroup() throws InterruptedException {
+    void canAddContactToGroup() {
         if (app.hbm().getContactCount() == 0) {
             app.hbm().createContact(new ContactData());
         }
         if (app.hbm().getGroupCount() == 0) {
             app.hbm().createGroup(new GroupData());
         }
-        if (app.contacts().getCountContactInGroup() == 0) {
-            app.hbm().createContact(new ContactData());
-        }
         var group = app.hbm().getGroupList().get(0);
-        var contact = app.contacts().getListContactInGroup().get(0);
+        var contact = app.hbm().getContactList().get(0);
+        if (app.hbm().getCountContactInGroup(group, contact)) {
+            app.contacts().removeContactFromGroup(contact, group);
+        }
         var oldRelated = app.hbm().getContactsInGroup(group);
-        Thread.sleep(1000);
         app.contacts().addContactToGroup(contact, group);
         var newRelated = app.hbm().getContactsInGroup(group);
         Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
@@ -58,6 +57,7 @@ public class ContactModificationTests extends TestBase {
         expectedList.sort(compareById);
         Assertions.assertEquals(expectedList, newRelated);
     }
-
-
 }
+
+
+

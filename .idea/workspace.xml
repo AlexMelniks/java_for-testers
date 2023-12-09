@@ -7,7 +7,8 @@
     <list default="true" id="fe25c30d-c332-4eb2-be85-7868d51c0cab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/manager/ContactHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/manager/ContactHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/tests/contact/ContactInfoTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/tests/contact/ContactInfoTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/tests/contact/ContactModificationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/tests/contact/ContactModificationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/tests/contact/ContactRemovalTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/tests/contact/ContactRemovalTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +33,9 @@
           <activation />
         </task>
         <task path="$PROJECT_DIR$/mantis_tests">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/addressbook_web_tests">
           <activation />
         </task>
         <projects_view>
@@ -83,31 +87,7 @@
       <recent name="D:\java\java_test\mantis_tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ContactInfoTests.testContactInfo">
-    <configuration name="ContactCreationTests.contactCreationInGroupTests (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/addressbook_web_tests" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;tests.contact.ContactCreationTests.contactCreationInGroupTests&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.ContactModificationTests.canAddContactToGroup">
     <configuration name="ContactInfoTests.testContactInfo" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -204,20 +184,44 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="ContactRemovalTests.canRemoveContactFromGroup" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/addressbook_web_tests" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;tests.contact.ContactRemovalTests.canRemoveContactFromGroup&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Gradle.ContactCreationTests.contactCreationInGroupTests (1)" />
       <item itemvalue="Gradle.ContactInfoTests.testContactInfo" />
       <item itemvalue="Gradle.ContactInfoTests.testContactInfos" />
       <item itemvalue="Gradle.ContactInfoTests.testPhones" />
       <item itemvalue="Gradle.ContactModificationTests.canAddContactToGroup" />
+      <item itemvalue="Gradle.ContactRemovalTests.canRemoveContactFromGroup" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ContactModificationTests.canAddContactToGroup" />
+        <item itemvalue="Gradle.ContactRemovalTests.canRemoveContactFromGroup" />
         <item itemvalue="Gradle.ContactInfoTests.testContactInfo" />
         <item itemvalue="Gradle.ContactInfoTests.testContactInfos" />
         <item itemvalue="Gradle.ContactInfoTests.testPhones" />
-        <item itemvalue="Gradle.ContactModificationTests.canAddContactToGroup" />
-        <item itemvalue="Gradle.ContactCreationTests.contactCreationInGroupTests (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -267,9 +271,9 @@
           <option name="timeStamp" value="90" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/addressbook_web_tests/src/test/java/tests/contact/ContactInfoTests.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="114" />
+          <url>file://$PROJECT_DIR$/addressbook_web_tests/src/test/java/manager/ContactHelper.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="124" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.UnsupportedOperationException" package="java.lang" />

@@ -72,7 +72,8 @@ public class ContactHelper extends HelperBase {
     }
 
     private void removeFromGroup() {
-        click((By.name("remove")));
+        click(By.name("remove"));
+        click(By.linkText("group page \"Test\""));
     }
 
     private void selectGroupToDisplayСontacts(GroupData group) {

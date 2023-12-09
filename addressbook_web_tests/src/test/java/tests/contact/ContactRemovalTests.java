@@ -43,7 +43,7 @@ public class ContactRemovalTests extends TestBase {
             app.hbm().createContact(new ContactData());
         }
         if (app.hbm().getGroupCount() == 0) {
-            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+            app.hbm().createGroup(new GroupData());
         }
         var group = app.hbm().getGroupList().get(0);
         var contact = app.hbm().getContactList().get(0);
@@ -64,6 +64,5 @@ public class ContactRemovalTests extends TestBase {
             newRelated.sort(compareById);
             Assertions.assertEquals(expectedList, newRelated);
         }
-
     }
 }
