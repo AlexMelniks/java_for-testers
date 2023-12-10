@@ -1,12 +1,75 @@
-•[MailMessage[from=Mantis Bug Tracker <noreply@example.com>, content=The user administrator has created an account for you with username "user1". In
-Oorder to complete your registration, visit the following URL (make sure it is
-?entered as the single line) and set your own access password:
+&dAccessorImpl.invoke0(Native Method)
+f	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+n	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+@	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+R	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+D	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+D	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+V	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
+J	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+W	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:587)
+_	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:828)
+g	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:705)
+V	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+^	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:704)
+_	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+_	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+5	at java.base/java.lang.Thread.run(Thread.java:833)
+h	at java.rmi/sun.rmi.transport.StreamRemoteCall.exceptionReceivedFromServer(StreamRemoteCall.java:304)
+X	at java.rmi/sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:280)
+D	at java.rmi/sun.rmi.server.UnicastRef.invoke(UnicastRef.java:165)
+n	at java.management.rmi/javax.management.remote.rmi.RMIServerImpl_Stub.newClient(RMIServerImpl_Stub.java:83)
+h	at java.management.rmi/javax.management.remote.rmi.RMIConnector.getConnection(RMIConnector.java:2107)
+a	at java.management.rmi/javax.management.remote.rmi.RMIConnector.connect(RMIConnector.java:321)
+g	at java.management/javax.management.remote.JMXConnectorFactory.connect(JMXConnectorFactory.java:270)
+Q	at org.apache.james.cli.probe.impl.JmxConnection.<init>(JmxConnection.java:78)
+Q	at org.apache.james.cli.ServerCmd.executeAndOutputToStream(ServerCmd.java:124)
+?	at org.apache.james.cli.ServerCmd.doMain(ServerCmd.java:118)
+=	at org.apache.james.cli.ServerCmd.main(ServerCmd.java:102)
+mError class java.lang.SecurityException while executing command:Authentication failed! Credentials required
+Cusage: java org.apache.james.cli.ServerCmd --host <arg> <command>
+; -h,--host <arg>              node hostname or ip address
+< -p,--port <arg>              remote jmx agent port number
+3 -password,--password <arg>   remote jmx password
+3 -username,--username <arg>   remote jmx username
+AddUser <username> <password>
+RemoveUser <username>
+ListUsers
+AddDomain <domainName>
+RemoveDomain <domainName>
+ContainsDomain <domainName>
+ListDomains
+ListMappings
+(ListUserDomainMappings <user> <domain>
+7AddAddressMapping <fromUser> <fromDomain> <toAddress>
+:RemoveAddressMapping <fromUser> <fromDomain> <toAddress>
+)AddRegexMapping <user> <domain> <regex>
+,RemoveRegexMapping <user> <domain> <regex>
+#SetPassword <username> <password>
+!CopyMailbox <srcBean> <dstBean>
+DeleteUserMailboxes <user>
+)CreateMailbox <namespace> <user> <name>
+ListUserMailboxes <user>
+)DeleteMailbox <namespace> <user> <name>
+,ImportEml <namespace> <user> <name> <path>
+GetStorageQuota <quotaroot>
+"GetMessageCountQuota <quotaroot>
+(GetQuotaroot <namespace> <user> <name>
+ GetMaxStorageQuota <quotaroot>
+%GetMaxMessageCountQuota <quotaroot>
+2SetMaxStorageQuota <quotaroot> <maxMessageCount>
+2SetMaxMessageCountQuota <quotaroot> <maxStorage>
+'SetGlobalMaxStorageQuota <maxStorage>
+1SetGlobalMaxMessageCountQuota <maxMessageCount>
+GetGlobalMaxStorageQuota
+GetGlobalMaxMessageCountQuota
+*ReindexMailbox <namespace> <user> <name>
+ReindexAll
+GetSieveQuota
+SetSieveQuota <quota>
+RemoveSieveQuota
+GetSieveUserQuota <username>
+&SetSieveUserQuota <username> <quota>
+!RemoveSieveUserQuota <username>
+5AddActiveSieveScript <username> <scriptname> <path>
 
-”http://localhost/mantisbt-2.26.0/verify.php?id=2&confirm_hash=ZgJYUgvTO7Z0wfEQYcRi-74mO6Cvr1vj6JkCLeHVg3Bt4_LOOTcbATpRHQj-VIGlHFPXWgtkfdUx3jBfYNfK
-
-OIf you did not request any registration, ignore this message and nothing will
-	happen.
-
-Do not reply to this message
-
-]]
