@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">3.133s</div>
+<div class="counter">0.196s</div>
 <p>duration</p>
 </div>
 </td>
@@ -66,20 +66,17 @@
 <li>
 <a href="#tab1">Tests</a>
 </li>
-<li>
-<a href="#tab2">Standard output</a>
-</li>
 </ul>
 <div id="tab0" class="tab">
 <h2>Failed tests</h2>
 <div class="test">
-<a name="canRegisterUser(String)[1]"></a>
-<h3 class="failures">[1] bcnyfdkext</h3>
+<a name="canRegisterUserViaApi(String)[1]"></a>
+<h3 class="failures">[1] hxzzeoukdf</h3>
 <span class="code">
-<pre>java.lang.RuntimeException: jakarta.mail.AuthenticationFailedException: Authentication failed.
-	at ru.stqa.mantis.manager.MailHelper.getInbox(MailHelper.java:61)
-	at ru.stqa.mantis.manager.MailHelper.receive(MailHelper.java:23)
-	at ru.stqa.mantis.tests.UserRegistrationTests.canRegisterUser(UserRegistrationTests.java:26)
+<pre>java.lang.RuntimeException: java.net.ConnectException: Failed to connect to localhost/[0:0:0:0:0:0:0:1]:8000
+	at ru.stqa.mantis.manager.JamesApiHelper.sendRequest(JamesApiHelper.java:59)
+	at ru.stqa.mantis.manager.JamesApiHelper.addUser(JamesApiHelper.java:25)
+	at ru.stqa.mantis.tests.UserRegistrationTests.canRegisterUserViaApi(UserRegistrationTests.java:41)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -229,12 +226,47 @@
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-Caused by: jakarta.mail.AuthenticationFailedException: Authentication failed.
-	at app//org.eclipse.angus.mail.pop3.POP3Store.protocolConnect(POP3Store.java:194)
-	at app//jakarta.mail.Service.connect(Service.java:345)
-	at app//jakarta.mail.Service.connect(Service.java:225)
-	at app//ru.stqa.mantis.manager.MailHelper.getInbox(MailHelper.java:57)
+Caused by: java.net.ConnectException: Failed to connect to localhost/[0:0:0:0:0:0:0:1]:8000
+	at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.kt:297)
+	at okhttp3.internal.connection.RealConnection.connect(RealConnection.kt:207)
+	at okhttp3.internal.connection.ExchangeFinder.findConnection(ExchangeFinder.kt:226)
+	at okhttp3.internal.connection.ExchangeFinder.findHealthyConnection(ExchangeFinder.kt:106)
+	at okhttp3.internal.connection.ExchangeFinder.find(ExchangeFinder.kt:74)
+	at okhttp3.internal.connection.RealCall.initExchange$okhttp(RealCall.kt:255)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.kt:32)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.kt:95)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.kt:83)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.kt:76)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.connection.RealCall.getResponseWithInterceptorChain$okhttp(RealCall.kt:201)
+	at okhttp3.internal.connection.RealCall.execute(RealCall.kt:154)
+	at ru.stqa.mantis.manager.JamesApiHelper.sendRequest(JamesApiHelper.java:46)
 	... 151 more
+	Suppressed: java.net.ConnectException: Failed to connect to localhost/127.0.0.1:8000
+		... 168 more
+	Caused by: java.net.ConnectException: Connection refused: no further information
+		at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+		at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
+		at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+		at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:597)
+		at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+		at java.base/java.net.Socket.connect(Socket.java:639)
+		at okhttp3.internal.platform.Platform.connectSocket(Platform.kt:128)
+		at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.kt:295)
+		... 167 more
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:597)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:639)
+	at okhttp3.internal.platform.Platform.connectSocket(Platform.kt:128)
+	at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.kt:295)
+	... 167 more
 </pre>
 </span>
 </div>
@@ -251,93 +283,12 @@ Caused by: jakarta.mail.AuthenticationFailedException: Authentication failed.
 </tr>
 </thead>
 <tr>
-<td class="failures">[1] bcnyfdkext</td>
-<td class="failures">canRegisterUser(String)[1]</td>
-<td class="failures">3.133s</td>
+<td class="failures">[1] hxzzeoukdf</td>
+<td class="failures">canRegisterUserViaApi(String)[1]</td>
+<td class="failures">0.196s</td>
 <td class="failures">failed</td>
 </tr>
 </table>
-</div>
-<div id="tab2" class="tab">
-<h2>Standard output</h2>
-<span class="code">
-<pre>dAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
-	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
-	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
-	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
-	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:587)
-	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:828)
-	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:705)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
-	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:704)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:833)
-	at java.rmi/sun.rmi.transport.StreamRemoteCall.exceptionReceivedFromServer(StreamRemoteCall.java:304)
-	at java.rmi/sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:280)
-	at java.rmi/sun.rmi.server.UnicastRef.invoke(UnicastRef.java:165)
-	at java.management.rmi/javax.management.remote.rmi.RMIServerImpl_Stub.newClient(RMIServerImpl_Stub.java:83)
-	at java.management.rmi/javax.management.remote.rmi.RMIConnector.getConnection(RMIConnector.java:2107)
-	at java.management.rmi/javax.management.remote.rmi.RMIConnector.connect(RMIConnector.java:321)
-	at java.management/javax.management.remote.JMXConnectorFactory.connect(JMXConnectorFactory.java:270)
-	at org.apache.james.cli.probe.impl.JmxConnection.&lt;init&gt;(JmxConnection.java:78)
-	at org.apache.james.cli.ServerCmd.executeAndOutputToStream(ServerCmd.java:124)
-	at org.apache.james.cli.ServerCmd.doMain(ServerCmd.java:118)
-	at org.apache.james.cli.ServerCmd.main(ServerCmd.java:102)
-Error class java.lang.SecurityException while executing command:Authentication failed! Credentials required
-usage: java org.apache.james.cli.ServerCmd --host &lt;arg&gt; &lt;command&gt;
- -h,--host &lt;arg&gt;              node hostname or ip address
- -p,--port &lt;arg&gt;              remote jmx agent port number
- -password,--password &lt;arg&gt;   remote jmx password
- -username,--username &lt;arg&gt;   remote jmx username
-AddUser &lt;username&gt; &lt;password&gt;
-RemoveUser &lt;username&gt;
-ListUsers
-AddDomain &lt;domainName&gt;
-RemoveDomain &lt;domainName&gt;
-ContainsDomain &lt;domainName&gt;
-ListDomains
-ListMappings
-ListUserDomainMappings &lt;user&gt; &lt;domain&gt;
-AddAddressMapping &lt;fromUser&gt; &lt;fromDomain&gt; &lt;toAddress&gt;
-RemoveAddressMapping &lt;fromUser&gt; &lt;fromDomain&gt; &lt;toAddress&gt;
-AddRegexMapping &lt;user&gt; &lt;domain&gt; &lt;regex&gt;
-RemoveRegexMapping &lt;user&gt; &lt;domain&gt; &lt;regex&gt;
-SetPassword &lt;username&gt; &lt;password&gt;
-CopyMailbox &lt;srcBean&gt; &lt;dstBean&gt;
-DeleteUserMailboxes &lt;user&gt;
-CreateMailbox &lt;namespace&gt; &lt;user&gt; &lt;name&gt;
-ListUserMailboxes &lt;user&gt;
-DeleteMailbox &lt;namespace&gt; &lt;user&gt; &lt;name&gt;
-ImportEml &lt;namespace&gt; &lt;user&gt; &lt;name&gt; &lt;path&gt;
-GetStorageQuota &lt;quotaroot&gt;
-GetMessageCountQuota &lt;quotaroot&gt;
-GetQuotaroot &lt;namespace&gt; &lt;user&gt; &lt;name&gt;
-GetMaxStorageQuota &lt;quotaroot&gt;
-GetMaxMessageCountQuota &lt;quotaroot&gt;
-SetMaxStorageQuota &lt;quotaroot&gt; &lt;maxMessageCount&gt;
-SetMaxMessageCountQuota &lt;quotaroot&gt; &lt;maxStorage&gt;
-SetGlobalMaxStorageQuota &lt;maxStorage&gt;
-SetGlobalMaxMessageCountQuota &lt;maxMessageCount&gt;
-GetGlobalMaxStorageQuota
-GetGlobalMaxMessageCountQuota
-ReindexMailbox &lt;namespace&gt; &lt;user&gt; &lt;name&gt;
-ReindexAll
-GetSieveQuota
-SetSieveQuota &lt;quota&gt;
-RemoveSieveQuota
-GetSieveUserQuota &lt;username&gt;
-SetSieveUserQuota &lt;username&gt; &lt;quota&gt;
-RemoveSieveUserQuota &lt;username&gt;
-AddActiveSieveScript &lt;username&gt; &lt;scriptname&gt; &lt;path&gt;
-
-</pre>
-</span>
 </div>
 </div>
 <div id="footer">
@@ -347,7 +298,7 @@ AddActiveSieveScript &lt;username&gt; &lt;scriptname&gt; &lt;path&gt;
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.2</a> at 10 дек. 2023 г., 17:26:20</p>
+<a href="http://www.gradle.org">Gradle 8.2</a> at 12 дек. 2023 г., 17:10:34</p>
 </div>
 </div>
 </body>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.stqa.mantis.tests.UserRegistrationTests" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-12-10T14:26:16" hostname="DESKTOP-LD4U1KU" time="3.133">
+<testsuite name="ru.stqa.mantis.tests.UserRegistrationTests" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-12-12T14:10:34" hostname="DESKTOP-LD4U1KU" time="0.196">
   <properties/>
-  <testcase name="[1] bcnyfdkext" classname="ru.stqa.mantis.tests.UserRegistrationTests" time="3.133">
-    <failure message="java.lang.RuntimeException: jakarta.mail.AuthenticationFailedException: Authentication failed." type="java.lang.RuntimeException">java.lang.RuntimeException: jakarta.mail.AuthenticationFailedException: Authentication failed.
-	at ru.stqa.mantis.manager.MailHelper.getInbox(MailHelper.java:61)
-	at ru.stqa.mantis.manager.MailHelper.receive(MailHelper.java:23)
-	at ru.stqa.mantis.tests.UserRegistrationTests.canRegisterUser(UserRegistrationTests.java:26)
+  <testcase name="[1] hxzzeoukdf" classname="ru.stqa.mantis.tests.UserRegistrationTests" time="0.196">
+    <failure message="java.lang.RuntimeException: java.net.ConnectException: Failed to connect to localhost/[0:0:0:0:0:0:0:1]:8000" type="java.lang.RuntimeException">java.lang.RuntimeException: java.net.ConnectException: Failed to connect to localhost/[0:0:0:0:0:0:0:1]:8000
+	at ru.stqa.mantis.manager.JamesApiHelper.sendRequest(JamesApiHelper.java:59)
+	at ru.stqa.mantis.manager.JamesApiHelper.addUser(JamesApiHelper.java:25)
+	at ru.stqa.mantis.tests.UserRegistrationTests.canRegisterUserViaApi(UserRegistrationTests.java:41)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -155,89 +155,49 @@
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-Caused by: jakarta.mail.AuthenticationFailedException: Authentication failed.
-	at app//org.eclipse.angus.mail.pop3.POP3Store.protocolConnect(POP3Store.java:194)
-	at app//jakarta.mail.Service.connect(Service.java:345)
-	at app//jakarta.mail.Service.connect(Service.java:225)
-	at app//ru.stqa.mantis.manager.MailHelper.getInbox(MailHelper.java:57)
+Caused by: java.net.ConnectException: Failed to connect to localhost/[0:0:0:0:0:0:0:1]:8000
+	at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.kt:297)
+	at okhttp3.internal.connection.RealConnection.connect(RealConnection.kt:207)
+	at okhttp3.internal.connection.ExchangeFinder.findConnection(ExchangeFinder.kt:226)
+	at okhttp3.internal.connection.ExchangeFinder.findHealthyConnection(ExchangeFinder.kt:106)
+	at okhttp3.internal.connection.ExchangeFinder.find(ExchangeFinder.kt:74)
+	at okhttp3.internal.connection.RealCall.initExchange$okhttp(RealCall.kt:255)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.kt:32)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.kt:95)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.kt:83)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.kt:76)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.connection.RealCall.getResponseWithInterceptorChain$okhttp(RealCall.kt:201)
+	at okhttp3.internal.connection.RealCall.execute(RealCall.kt:154)
+	at ru.stqa.mantis.manager.JamesApiHelper.sendRequest(JamesApiHelper.java:46)
 	... 151 more
+	Suppressed: java.net.ConnectException: Failed to connect to localhost/127.0.0.1:8000
+		... 168 more
+	Caused by: java.net.ConnectException: Connection refused: no further information
+		at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+		at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
+		at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+		at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:597)
+		at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+		at java.base/java.net.Socket.connect(Socket.java:639)
+		at okhttp3.internal.platform.Platform.connectSocket(Platform.kt:128)
+		at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.kt:295)
+		... 167 more
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:597)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:639)
+	at okhttp3.internal.platform.Platform.connectSocket(Platform.kt:128)
+	at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.kt:295)
+	... 167 more
 </failure>
   </testcase>
-  <system-out><![CDATA[dAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
-	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
-	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
-	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
-	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:587)
-	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:828)
-	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:705)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
-	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:704)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:833)
-	at java.rmi/sun.rmi.transport.StreamRemoteCall.exceptionReceivedFromServer(StreamRemoteCall.java:304)
-	at java.rmi/sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:280)
-	at java.rmi/sun.rmi.server.UnicastRef.invoke(UnicastRef.java:165)
-	at java.management.rmi/javax.management.remote.rmi.RMIServerImpl_Stub.newClient(RMIServerImpl_Stub.java:83)
-	at java.management.rmi/javax.management.remote.rmi.RMIConnector.getConnection(RMIConnector.java:2107)
-	at java.management.rmi/javax.management.remote.rmi.RMIConnector.connect(RMIConnector.java:321)
-	at java.management/javax.management.remote.JMXConnectorFactory.connect(JMXConnectorFactory.java:270)
-	at org.apache.james.cli.probe.impl.JmxConnection.<init>(JmxConnection.java:78)
-	at org.apache.james.cli.ServerCmd.executeAndOutputToStream(ServerCmd.java:124)
-	at org.apache.james.cli.ServerCmd.doMain(ServerCmd.java:118)
-	at org.apache.james.cli.ServerCmd.main(ServerCmd.java:102)
-Error class java.lang.SecurityException while executing command:Authentication failed! Credentials required
-usage: java org.apache.james.cli.ServerCmd --host <arg> <command>
- -h,--host <arg>              node hostname or ip address
- -p,--port <arg>              remote jmx agent port number
- -password,--password <arg>   remote jmx password
- -username,--username <arg>   remote jmx username
-AddUser <username> <password>
-RemoveUser <username>
-ListUsers
-AddDomain <domainName>
-RemoveDomain <domainName>
-ContainsDomain <domainName>
-ListDomains
-ListMappings
-ListUserDomainMappings <user> <domain>
-AddAddressMapping <fromUser> <fromDomain> <toAddress>
-RemoveAddressMapping <fromUser> <fromDomain> <toAddress>
-AddRegexMapping <user> <domain> <regex>
-RemoveRegexMapping <user> <domain> <regex>
-SetPassword <username> <password>
-CopyMailbox <srcBean> <dstBean>
-DeleteUserMailboxes <user>
-CreateMailbox <namespace> <user> <name>
-ListUserMailboxes <user>
-DeleteMailbox <namespace> <user> <name>
-ImportEml <namespace> <user> <name> <path>
-GetStorageQuota <quotaroot>
-GetMessageCountQuota <quotaroot>
-GetQuotaroot <namespace> <user> <name>
-GetMaxStorageQuota <quotaroot>
-GetMaxMessageCountQuota <quotaroot>
-SetMaxStorageQuota <quotaroot> <maxMessageCount>
-SetMaxMessageCountQuota <quotaroot> <maxStorage>
-SetGlobalMaxStorageQuota <maxStorage>
-SetGlobalMaxMessageCountQuota <maxMessageCount>
-GetGlobalMaxStorageQuota
-GetGlobalMaxMessageCountQuota
-ReindexMailbox <namespace> <user> <name>
-ReindexAll
-GetSieveQuota
-SetSieveQuota <quota>
-RemoveSieveQuota
-GetSieveUserQuota <username>
-SetSieveUserQuota <username> <quota>
-RemoveSieveUserQuota <username>
-AddActiveSieveScript <username> <scriptname> <path>
-
-]]></system-out>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
