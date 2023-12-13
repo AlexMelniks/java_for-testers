@@ -5,7 +5,7 @@ public record ContactData(String id, String firstName, String lastName, String p
                           String address2) {
 
     public ContactData() {
-        this("", "Test","Test","", "12345", "12345", "12345", "12345", "Test@localhost", "Test2@localhost", "Test3@localhost", "Test", "Test");
+        this("", "","","", "", "", "", "", "", "", "", "", "");
     }
     public ContactData withId(String id) {
         return new ContactData(id, this.firstName, this.lastName, this.photo, this.home, this.mobile, this.work, this.phone2, this.email, this.email2, this.email3, this.address, this.address);

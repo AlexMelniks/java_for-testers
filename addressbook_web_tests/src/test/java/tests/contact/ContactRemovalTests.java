@@ -29,7 +29,7 @@ public class ContactRemovalTests extends TestBase {
     }
 
     @Test
-    public void canRemoveAllAddAtOnce() {
+    public void canRemoveAllContacts() {
         if (app.contacts().getCountContact() == 0) {
             app.contacts().createContactNew(new ContactData().withFirstName("Test"));
         }
@@ -38,18 +38,19 @@ public class ContactRemovalTests extends TestBase {
     }
 
     @Test
-    void canRemoveContactFromGroup() {
+    void canRemoveContactFromGroup() throws InterruptedException {
         if (app.hbm().getContactCount() == 0) {
             app.hbm().createContact(new ContactData());
         }
         if (app.hbm().getGroupCount() == 0) {
-            app.hbm().createGroup(new GroupData());
+            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
         }
         var group = app.hbm().getGroupList().get(0);
         var contact = app.hbm().getContactList().get(0);
         if (!app.hbm().getCountContactInGroup(group, contact)) {
             app.contacts().addContactToGroup(contact, group);
         }
+        Thread.sleep(1000);
         var oldRelated = app.hbm().getContactsInGroup(group);
         app.contacts().removeContactFromGroup(contact, group);
         var newRelated = app.hbm().getContactsInGroup(group);
