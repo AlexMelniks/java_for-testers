@@ -1,5 +1,6 @@
 package manager;
 
+import io.qameta.allure.Step;
 import manager.hbm.ContactRecord;
 import manager.hbm.GroupRecord;
 import model.ContactData;
@@ -52,13 +53,13 @@ public class HibernateHelper extends HelperBase {
         }));
     }
 
-
+    @Step
     public long getGroupCount() {
         return sessionFactory.fromSession(session -> {
             return session.createQuery("select count (*) from GroupRecord", Long.class).getSingleResult();
         });
     }
-
+    @Step
     public void createGroup(GroupData groupData) {
         sessionFactory.inSession(session -> {
             session.getTransaction().begin();
@@ -66,6 +67,7 @@ public class HibernateHelper extends HelperBase {
             session.getTransaction().commit();
         });
     }
+    @Step
     public void createContact(ContactData contactData) {
         sessionFactory.inSession(session -> {
             session.getTransaction().begin();
@@ -73,6 +75,7 @@ public class HibernateHelper extends HelperBase {
             session.getTransaction().commit();
         });
     }
+    @Step
     public List<ContactData>  getContactList() {
         return convertContactlist(sessionFactory.fromSession(session -> {
             return session.createQuery("from ContactRecord", ContactRecord.class).list();
@@ -127,7 +130,7 @@ public class HibernateHelper extends HelperBase {
     }
 
 
-
+@Step
     public List<ContactData> getContactsInGroup(GroupData group) {
         return sessionFactory.fromSession(session -> {
             return convertContactlist(session.get(GroupRecord.class, group.id()).contacts);

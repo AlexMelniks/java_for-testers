@@ -37,7 +37,7 @@ public class ContactModificationTests extends TestBase {
             app.hbm().createContact(new ContactData());
         }
         if (app.hbm().getGroupCount() == 0) {
-            app.hbm().createGroup(new GroupData());
+            app.hbm().createGroup(new GroupData("","group name","group header", "group footer"));
         }
         var group = app.hbm().getGroupList().get(0);
         var contact = app.hbm().getContactList().get(0);

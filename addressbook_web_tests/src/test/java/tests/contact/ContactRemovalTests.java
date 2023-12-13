@@ -1,5 +1,6 @@
 package tests.contact;
 
+import io.qameta.allure.Step;
 import model.ContactData;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
@@ -64,6 +65,7 @@ public class ContactRemovalTests extends TestBase {
         if (!newRelated.isEmpty()) {
             newRelated.sort(compareById);
             Assertions.assertEquals(expectedList, newRelated);
+
         }
     }
 }

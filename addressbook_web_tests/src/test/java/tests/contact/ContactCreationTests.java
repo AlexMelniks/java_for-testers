@@ -48,7 +48,7 @@ public class ContactCreationTests extends TestBase {
 
     public void contactCreationInGroupTests(ContactData contact) {
         if (app.hbm().getGroupCount() == 0) {
-            app.hbm().createGroup(new GroupData());
+            app.hbm().createGroup(new GroupData("","group name","group header", "group footer"));
         }
         var group = app.hbm().getGroupList().get(0);
         var oldRelated = app.hbm().getContactsInGroup(group);

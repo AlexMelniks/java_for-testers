@@ -1,5 +1,6 @@
 package manager;
 
+import io.qameta.allure.Step;
 import model.ContactData;
 import model.GroupData;
 import org.openqa.selenium.By;
@@ -13,14 +14,14 @@ public class ContactHelper extends HelperBase {
     public ContactHelper(ApplicationManager manager) {
         super(manager);
     }
-
+    @Step
     public void createContactNew(ContactData contact) {
         openAddNewPage();
         fillContactForm(contact);
         submitContactCreation();
         returnToHomePage();
     }
-
+    @Step
     public void createContactInGroup(ContactData contact, GroupData group) {
         openAddNewPage();
         fillContactForm(contact);
@@ -28,21 +29,21 @@ public class ContactHelper extends HelperBase {
         submitContactCreation();
         returnToHomePage();
     }
-
+    @Step
     public void addContactInGroup(ContactData contact, GroupData group) {
         openHomePage();
         selectContact(contact);
         addInGroup(group);
         openHomePage();
     }
-
+    @Step
     public void removeContact(ContactData contact) {
         openHomePage();
         listAllContact();
         selectContact(contact);
         removeSelectedContact();
     }
-
+    @Step
     public void removeAllContacts() {
         openHomePage();
         listAllContact();
@@ -50,7 +51,7 @@ public class ContactHelper extends HelperBase {
         removeSelectedContact();
     }
 
-
+    @Step
     public void modifyContact(ContactData contact, ContactData modifiedAdd) {
         openHomePage();
         selectContact(contact);
@@ -58,12 +59,14 @@ public class ContactHelper extends HelperBase {
         fillContactForm(modifiedAdd);
         submitContactModification();
     }
+    @Step
     public void removeContactFromGroup(ContactData contact, GroupData group) {
         openHomePage();
         selectGroupToDisplayСontacts(group);
         selectContact(contact);
         removeFromGroup();
     }
+    @Step
     public void addContactToGroup(ContactData contact, GroupData group) {
         openHomePage();
         listNoneGroup();
